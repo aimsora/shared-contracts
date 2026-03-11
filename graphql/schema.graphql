@@ -1,0 +1,51 @@
+scalar DateTime
+scalar JSON
+
+type Query {
+  health: String!
+  procurementItems(
+    search: String
+    source: String
+    limit: Int = 20
+    offset: Int = 0
+  ): ProcurementItemPage!
+}
+
+type Mutation {
+  ingestNormalizedItem(input: IngestNormalizedItemInput!): IngestResult!
+}
+
+type ProcurementItemPage {
+  total: Int!
+  items: [ProcurementItem!]!
+}
+
+type ProcurementItem {
+  externalId: ID!
+  source: String!
+  title: String!
+  customer: String
+  supplier: String
+  amount: Float
+  currency: String
+  publishedAt: DateTime
+  rawPayload: JSON
+}
+
+input IngestNormalizedItemInput {
+  externalId: ID!
+  source: String!
+  title: String!
+  customer: String
+  supplier: String
+  amount: Float
+  currency: String
+  publishedAt: DateTime
+  payloadVersion: String!
+  rawPayload: JSON
+}
+
+type IngestResult {
+  accepted: Boolean!
+  idempotencyKey: String!
+}

@@ -1,0 +1,28 @@
+{
+  "eventId": "3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be",
+  "source": "rosatom-zakupki",
+  "collectedAt": "2026-03-11T12:15:24.000Z",
+  "url": "https://zakupki.rosatom.ru/procedure/RA-2026-0311-447",
+  "payloadVersion": "v1",
+  "raw": {
+    "noticeNumber": "RA-2026-0311-447",
+    "lawType": "223-FZ",
+    "procedureType": "Открытый конкурс в электронной форме",
+    "customer": "АО Концерн Росэнергоатом",
+    "branch": "Калининская АЭС",
+    "subject": "Поставка комплектов трубопроводной арматуры для ППР-2026",
+    "nmc": 18450000,
+    "currency": "RUB",
+    "publicationDate": "2026-03-10T08:30:00.000Z",
+    "deadlineDate": "2026-03-20T14:00:00.000Z",
+    "region": "Тверская область",
+    "okpd2": "28.14.13.110",
+    "deliveryTerms": "Поставка партиями на склад заказчика, Incoterms DDP",
+    "attachments": [
+      "Техническое_задание.pdf",
+      "Проект_договора.docx"
+    ],
+    "contactPerson": "Иванов С.С.",
+    "contactEmail": "zakupki@kalinin-npp.ru"
+  }
+}

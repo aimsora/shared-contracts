@@ -1,0 +1,14 @@
+{
+  "eventId": "3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be",
+  "source": "rosatom-zakupki",
+  "payloadVersion": "v1",
+  "externalId": "rosatom-zakupki-RA-2026-0311-447",
+  "title": "Поставка комплектов трубопроводной арматуры для ППР-2026",
+  "customer": "АО Концерн Росэнергоатом",
+  "supplier": "ООО ПромАрматура-Сервис",
+  "amount": 17940000,
+  "currency": "RUB",
+  "publishedAt": "2026-03-10T08:30:00.000Z",
+  "normalizedAt": "2026-03-11T12:15:31.000Z",
+  "rawRef": "https://zakupki.rosatom.ru/procedure/RA-2026-0311-447"
+}
