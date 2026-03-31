@@ -1,12 +1,17 @@
 {
-  "name": "shared-contracts",
-  "version": "0.1.0",
+  "name": "@aimsora/shared-contracts",
+  "version": "1.0.0",
   "private": true,
-  "description": "Общие контракты GraphQL и JSON Schema для сервисов платформы.",
+  "description": "Production shared contracts for AIMSORA: GraphQL SDL, JSON Schema, fixtures and validation scripts.",
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-contracts.mjs",
+    "build": "npm run validate",
     "check": "npm run validate"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
   },
   "engines": {
     "node": ">=20"

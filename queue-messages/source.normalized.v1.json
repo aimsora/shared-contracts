@@ -1,14 +1,33 @@
 {
   "eventId": "3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be",
-  "source": "rosatom-zakupki",
+  "runKey": "find-tender-2026-03-29T22:15:24.000Z",
+  "source": "find-tender",
   "payloadVersion": "v1",
-  "externalId": "rosatom-zakupki-RA-2026-0311-447",
-  "title": "Поставка комплектов трубопроводной арматуры для ППР-2026",
-  "customer": "АО Концерн Росэнергоатом",
-  "supplier": "ООО ПромАрматура-Сервис",
-  "amount": 17940000,
-  "currency": "RUB",
-  "publishedAt": "2026-03-10T08:30:00.000Z",
+  "externalId": "find-tender-ocds-h6vhtk-061410",
+  "title": "E-Disclosure Services",
+  "description": "The Care Quality Commission requires access to an e-disclosure platform.",
+  "customer": "Care Quality Commission",
+  "supplier": "KLDISCOVERY LIMITED",
+  "amount": 150000,
+  "currency": "GBP",
+  "publishedAt": "2026-02-02T11:56:00.000Z",
+  "deadlineAt": "2026-07-29T00:00:00.000Z",
   "normalizedAt": "2026-03-11T12:15:31.000Z",
-  "rawRef": "https://zakupki.rosatom.ru/procedure/RA-2026-0311-447"
+  "sourceUrl": "https://www.find-tender.service.gov.uk/Notice/008889-2026",
+  "status": "ACTIVE",
+  "rawRef": "https://www.find-tender.service.gov.uk/Notice/008889-2026",
+  "rawEvent": {
+    "eventId": "3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be",
+    "runKey": "find-tender-2026-03-29T22:15:24.000Z",
+    "collectedAt": "2026-03-11T12:15:24.000Z",
+    "url": "https://www.find-tender.service.gov.uk/Notice/008889-2026",
+    "artifacts": [
+      {
+        "kind": "RAW_JSON",
+        "bucket": "scraper-artifacts",
+        "objectKey": "find-tender/2026/03/11/3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be/raw.json",
+        "mimeType": "application/json"
+      }
+    ]
+  }
 }

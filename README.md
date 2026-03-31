@@ -39,4 +39,4 @@ npm run validate
 
 - `backend-api` реализует GraphQL-контракт;
 - `scraper-service` и `processing-worker` используют event-схемы;
-- `frontend-app` ориентируется на схему API.
+- `aimsora` ориентируется на схему API.
