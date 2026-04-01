@@ -1,51 +1,268 @@
-scalar DateTime
-scalar JSON
-
-type Query {
-  health: String!
-  procurementItems(
-    search: String
-    source: String
-    limit: Int = 20
-    offset: Int = 0
-  ): ProcurementItemPage!
+type AuthTokens {
+  accessToken: String!
+  expiresInSeconds: Float!
+  refreshToken: String!
+  user: User!
 }
 
-type Mutation {
-  ingestNormalizedItem(input: IngestNormalizedItemInput!): IngestResult!
+input ChangePasswordInput {
+  currentPassword: String!
+  newPassword: String!
 }
 
-type ProcurementItemPage {
-  total: Int!
-  items: [ProcurementItem!]!
+input CreateUserInput {
+  email: String!
+  fullName: String!
+  password: String!
+  role: UserRole!
 }
 
-type ProcurementItem {
-  externalId: ID!
+type DashboardProcurementStatusStat {
+  count: Int!
+  status: ProcurementStatus!
+}
+
+type DashboardSourceStat {
+  count: Int!
   source: String!
-  title: String!
-  customer: String
-  supplier: String
-  amount: Float
-  currency: String
-  publishedAt: DateTime
-  rawPayload: JSON
+}
+
+type DashboardSourceSummaryItem {
+  isActive: Boolean!
+  kind: SourceKind!
+  lastRunAt: DateTime
+  name: String!
+  procurementCount: Int!
+  runCount: Int!
+  source: String!
+}
+
+type DashboardSummary {
+  activeSources: Int!
+  bySource: [DashboardSourceStat!]!
+  lastPublishedAt: DateTime
+  procurementsByStatus: [DashboardProcurementStatusStat!]!
+  procurementsOverTime: [DashboardTimelinePoint!]!
+  recentProcurements: [ProcurementItem!]!
+  recentSourceRuns: [SourceRun!]!
+  runsLast24h: Int!
+  sourcesSummary: [DashboardSourceSummaryItem!]!
+  totalProcurements: Int!
+}
+
+type DashboardTimelinePoint {
+  count: Int!
+  date: String!
+}
+
+scalar DateTime
+
+input IngestArtifactInput {
+  bucket: String!
+  checksum: String
+  kind: String!
+  metadata: JSON
+  mimeType: String
+  objectKey: String!
+  sizeBytes: Int
 }
 
 input IngestNormalizedItemInput {
-  externalId: ID!
-  source: String!
-  title: String!
-  customer: String
-  supplier: String
   amount: Float
   currency: String
-  publishedAt: DateTime
+  customer: String
+  deadlineAt: DateTime
+  description: String
+  externalId: ID!
   payloadVersion: String!
+  publishedAt: DateTime
+  rawEvent: IngestRawEventInput
   rawPayload: JSON
+  source: String!
+  sourceUrl: String
+  status: ProcurementStatus = ACTIVE
+  supplier: String
+  title: String!
+}
+
+input IngestRawEventInput {
+  artifacts: [IngestArtifactInput!]
+  collectedAt: DateTime!
+  eventId: String!
+  runKey: String
+  url: String!
 }
 
 type IngestResult {
   accepted: Boolean!
   idempotencyKey: String!
+  procurementId: ID!
+}
+
+scalar JSON
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  changePassword(input: ChangePasswordInput!): Boolean!
+  createUser(input: CreateUserInput!): User!
+  deactivateUser(userId: String!): Boolean!
+  ingestNormalizedItem(input: IngestNormalizedItemInput!): IngestResult!
+  login(input: LoginInput!): AuthTokens!
+  logout(input: RefreshTokenInput!): Boolean!
+  refreshSession(input: RefreshTokenInput!): AuthTokens!
+  updateUserRole(input: UpdateUserRoleInput!): User!
+}
+
+input ProcurementFilterInput {
+  search: String
+  source: String
+  status: ProcurementStatus
+}
+
+type ProcurementItem {
+  amount: Float
+  createdAt: DateTime!
+  currency: String
+  customer: String
+  deadlineAt: DateTime
+  description: String
+  externalId: ID!
+  id: ID!
+  publishedAt: DateTime
+  rawPayload: JSON
+  source: String!
+  sourceUrl: String
+  status: ProcurementStatus!
+  supplier: String
+  title: String!
+  updatedAt: DateTime!
+}
+
+type ProcurementItemPage {
+  items: [ProcurementItem!]!
+  total: Int!
+}
+
+enum ProcurementSortField {
+  AMOUNT
+  PUBLISHED_AT
+  TITLE
+  UPDATED_AT
+}
+
+input ProcurementSortInput {
+  direction: SortDirection! = DESC
+  field: ProcurementSortField! = PUBLISHED_AT
+}
+
+enum ProcurementStatus {
+  ACTIVE
+  ARCHIVED
+  CLOSED
+  DRAFT
+}
+
+type Query {
+  dashboardSummary: DashboardSummary!
+  health: String!
+  me: User!
+  procurementItem(id: String!): ProcurementItem
+  procurementItems(
+    filter: ProcurementFilterInput
+    limit: Int! = 20
+    offset: Int! = 0
+    sort: ProcurementSortInput
+  ): ProcurementItemPage!
+  reports: [Report!]!
+  sourceRuns(limit: Int! = 25, source: String): [SourceRun!]!
+  sources: [Source!]!
+  users: [User!]!
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+}
+
+type Report {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  name: String!
+  status: ReportStatus!
+  updatedAt: DateTime!
+}
+
+enum ReportStatus {
+  FAILED
+  PENDING
+  READY
+}
+
+enum SortDirection {
+  ASC
+  DESC
+}
+
+type Source {
+  baseUrl: String
+  code: String!
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  isActive: Boolean!
+  kind: SourceKind!
+  name: String!
+  updatedAt: DateTime!
+}
+
+enum SourceKind {
+  DEMO
+  FIND_TENDER
+}
+
+type SourceRun {
+  errorMessage: String
+  finishedAt: DateTime
+  id: ID!
+  itemsDiscovered: Int!
+  itemsFailed: Int!
+  itemsPublished: Int!
+  runKey: String!
+  sourceCode: String!
+  startedAt: DateTime!
+  status: SourceRunStatus!
+}
+
+enum SourceRunStatus {
+  FAILED
+  PARTIAL
+  PENDING
+  RUNNING
+  SUCCESS
+}
+
+input UpdateUserRoleInput {
+  role: UserRole!
+  userId: ID!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  fullName: String!
+  id: ID!
+  isActive: Boolean!
+  lastLoginAt: DateTime
+  role: UserRole!
+  updatedAt: DateTime!
+}
+
+enum UserRole {
+  ADMIN
+  ANALYST
+  USER
 }
