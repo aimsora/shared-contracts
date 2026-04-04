@@ -1,42 +1,23 @@
-# shared-contracts
+# contracts
 
-![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
-![Versioning](https://img.shields.io/badge/Versioning-SemVer-3fb950)
-![API](https://img.shields.io/badge/Contracts-GraphQL%20%2B%20JSON%20Schema-orange)
+Единые контракты платформы NPPWEB.
 
-Репозиторий единых контрактов для всех сервисов платформы.
+## Что хранится в каталоге
 
-## Что делает этот репозиторий
+- `graphql/schema.graphql` - GraphQL-контракт для `npp-backend` и `npp-web`.
+- `events/source-raw.v1.json` - схема сырого события.
+- `events/source-normalized.v1.json` - схема нормализованного события.
+- `queue-messages/` - примеры сообщений для интеграционных тестов и локальной отладки.
 
-- хранит GraphQL-схему для API-контракта;
-- хранит JSON Schema для событий очередей;
-- задает единый формат обмена между сервисами.
-
-## Черновая реализация
-
-- `graphql/schema.graphql`;
-- `events/source-raw.v1.json`;
-- `events/source-normalized.v1.json`;
-- `queue-messages/` с реалистичными сообщениями для очередей;
-- скрипт `npm run validate` для базовой проверки контрактов;
-- CI workflow для автоматической проверки.
-
-## Реальные сообщения для очередей
-
-- `queue-messages/source.raw.v1.json` - пример сырого сообщения от `scraper-service` в очередь `source.raw.v1`;
-- `queue-messages/source.normalized.v1.json` - пример нормализованного сообщения от `processing-worker` в очередь `source.normalized.v1`.
-
-Эти файлы можно использовать как фикстуры для интеграционных тестов и отладки пайплайна.
-
-## Локальный запуск проверки
+## Проверка
 
 ```bash
 npm install
 npm run validate
 ```
 
-## Связи с другими репозиториями
+## Кто использует
 
-- `backend-api` реализует GraphQL-контракт;
-- `scraper-service` и `processing-worker` используют event-схемы;
-- `aimsora` ориентируется на схему API.
+- `npp-backend` реализует GraphQL-контракт.
+- `scrape-helper` и `processing-worker` используют event-схемы.
+- `npp-web` ориентируется на GraphQL-схему API.

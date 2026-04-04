@@ -1,33 +1,32 @@
 {
   "eventId": "3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be",
-  "runKey": "find-tender-2026-03-29T22:15:24.000Z",
-  "source": "find-tender",
+  "runKey": "eis-2026-03-29T22:15:24.000Z",
+  "source": "eis",
   "collectedAt": "2026-03-11T12:15:24.000Z",
-  "url": "https://www.find-tender.service.gov.uk/Notice/008889-2026",
+  "url": "https://zakupki.gov.ru/epz/order/notice/ea44/view/common-info.html?regNumber=0173200001426000001",
   "payloadVersion": "v1",
   "artifacts": [
     {
       "kind": "RAW_JSON",
       "bucket": "scraper-artifacts",
-      "objectKey": "find-tender/2026/03/11/3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be/raw.json",
+      "objectKey": "eis/2026/03/11/3f802d20-df49-4ec3-bf2d-5d1e0ca1b4be/raw.json",
       "mimeType": "application/json"
     }
   ],
   "metadata": {
     "adapterVersion": "1.0.0",
-    "fetchedFrom": "https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages"
+    "fetchedFrom": "https://zakupki.gov.ru/epz/order/extendedsearch/results.html"
   },
   "raw": {
-    "ocid": "ocds-h6vhtk-061410",
-    "noticeId": "2026/S 000-008889",
-    "title": "E-Disclosure Services",
-    "buyer": "Care Quality Commission",
-    "supplier": "KLDISCOVERY LIMITED",
-    "amount": 150000,
-    "currency": "GBP",
+    "noticeNumber": "0173200001426000001",
+    "title": "Поставка серверного оборудования",
+    "buyer": "ГУП Технопарк",
+    "supplier": "ООО Альфа",
+    "amount": 1250000,
+    "currency": "RUB",
     "publishedAt": "2026-02-02T11:56:00.000Z",
     "deadlineAt": "2026-07-29T00:00:00.000Z",
-    "description": "The Care Quality Commission requires access to an e-disclosure platform.",
-    "stage": "award"
+    "description": "Закупка стоечного оборудования для регионального дата-центра.",
+    "stage": "submission"
   }
 }

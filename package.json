@@ -1,8 +1,8 @@
 {
-  "name": "@aimsora/shared-contracts",
+  "name": "@nppweb/shared-contracts",
   "version": "1.0.0",
   "private": true,
-  "description": "Production shared contracts for AIMSORA: GraphQL SDL, JSON Schema, fixtures and validation scripts.",
+  "description": "Production shared contracts for NPPWEB: GraphQL SDL, JSON Schema, fixtures and validation scripts.",
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-contracts.mjs",
