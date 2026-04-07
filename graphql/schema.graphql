@@ -42,6 +42,7 @@ type DashboardSummary {
   bySource: [DashboardSourceStat!]!
   lastPublishedAt: DateTime
   procurementsByStatus: [DashboardProcurementStatusStat!]!
+  recentNppProcurements: [ProcurementItem!]!
   procurementsOverTime: [DashboardTimelinePoint!]!
   recentProcurements: [ProcurementItem!]!
   recentSourceRuns: [SourceRun!]!
