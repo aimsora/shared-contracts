@@ -1,0 +1,20 @@
+name: Production Deploy
+
+on:
+  push:
+    branches: ["main", "master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    uses: nppweb/infra/.github/workflows/deploy.yml@main
+    with:
+      repo_name: contracts
+      branch: ${{ github.ref_name }}
+      target_sha: ${{ github.sha }}
+      services: processing-worker,scraper-service
+      auto_rollback: true
+    secrets: inherit
