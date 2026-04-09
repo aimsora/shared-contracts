@@ -185,6 +185,7 @@ type Query {
   ): ProcurementItemPage!
   reports: [Report!]!
   sourceRuns(limit: Int! = 25, source: String): [SourceRun!]!
+  sourceRunsPage(limit: Int! = 20, offset: Int! = 0, source: String): SourceRunPage!
   sources: [Source!]!
   users: [User!]!
 }
@@ -250,6 +251,11 @@ type SourceRun {
   sourceCode: String!
   startedAt: DateTime!
   status: SourceRunStatus!
+}
+
+type SourceRunPage {
+  items: [SourceRun!]!
+  total: Int!
 }
 
 enum SourceRunStatus {
