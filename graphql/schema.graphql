@@ -110,11 +110,16 @@ input LoginInput {
 type Mutation {
   changePassword(input: ChangePasswordInput!): Boolean!
   createUser(input: CreateUserInput!): User!
+  deleteUser(userId: String!): Boolean!
   deactivateUser(userId: String!): Boolean!
   ingestNormalizedItem(input: IngestNormalizedItemInput!): IngestResult!
   login(input: LoginInput!): AuthTokens!
   logout(input: RefreshTokenInput!): Boolean!
   refreshSession(input: RefreshTokenInput!): AuthTokens!
+  resetUserPassword(input: ResetUserPasswordInput!): User!
+  setUserActive(input: SetUserActiveInput!): User!
+  updateProfile(input: UpdateProfileInput!): User!
+  updateUser(input: UpdateUserInput!): User!
   updateUserRole(input: UpdateUserRoleInput!): User!
 }
 
@@ -188,6 +193,11 @@ input RefreshTokenInput {
   refreshToken: String!
 }
 
+input ResetUserPasswordInput {
+  newPassword: String!
+  userId: ID!
+}
+
 type Report {
   createdAt: DateTime!
   description: String
@@ -255,7 +265,28 @@ input UpdateUserRoleInput {
   userId: ID!
 }
 
+input SetUserActiveInput {
+  isActive: Boolean!
+  userId: ID!
+}
+
+input UpdateProfileInput {
+  avatarUrl: String
+  email: String!
+  fullName: String!
+}
+
+input UpdateUserInput {
+  avatarUrl: String
+  email: String!
+  fullName: String!
+  newPassword: String
+  role: UserRole!
+  userId: ID!
+}
+
 type User {
+  avatarUrl: String
   createdAt: DateTime!
   email: String!
   fullName: String!
@@ -269,5 +300,6 @@ type User {
 enum UserRole {
   ADMIN
   ANALYST
+  DEVELOPER
   USER
 }
